@@ -1,5 +1,5 @@
 plugins {
-	// id 'java'
+	id 'java'
 	id 'checkstyle'
 }
 
@@ -29,7 +29,7 @@ repositories {
 }
 
 dependencies {
-	// testImplementation('org.junit.jupiter:junit-jupiter:5.6.0')
+	testImplementation('org.junit.jupiter:junit-jupiter:5.6.0')
 	spotbugsPlugins 'com.h3xstream.findsecbugs:findsecbugs-plugin:1.11.0'
 }
 
@@ -40,11 +40,9 @@ tasks.withType(Checkstyle) {
     }
 }
 
-/*
 test {
 	useJUnitPlatform()
 	testLogging {
 		events "passed", "skipped", "failed"
 	}
 }
-*/
