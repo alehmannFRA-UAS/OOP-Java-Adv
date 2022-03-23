@@ -13,10 +13,9 @@ checkstyle {
 checkstyleMain {
     source ='src/main/java'
     reports {
-        include ( '**/*.java')
-        xml {
-           destination "${rootProject.buildDir}/reports/checkstyle/main.xml" 
-        }
+    	html {
+       		destination "build/checkstyle.html"
+     	}
     }
 }
 
@@ -33,29 +32,4 @@ test {
 	testLogging {
 		events "passed", "skipped", "failed"
 	}
-}
-
-task checkstyleReport << {
-    if (file("$buildDir/reports/checkstyle/${checkType}.xml").exists()) {
-        ant.xslt(in: "$buildDir/reports/checkstyle/${checkType}.xml",
-            style:"config/checkstyle/checkstyle.xsl",
-            out:"$buildDir/reports/checkstyle/checkstyle_${checkType}.html"
-        )
-    }
-}
-
-task quality(dependsOn:['checkstyleMain'])
-
-gradle.taskGraph.afterTask {Task task, TaskState state ->
-    if(state.failure) {
-        if (task.name in ['checkstyleMain']) {
-            checkstyleReport {
-                def matcher = task.name =~ /^checkstyle(.*)$/
-                if (matcher.matches()) {
-                    checkType = matcher.group(1).toLowerCase()
-                }
-            }
-            checkstyleReport.execute() 
-        }
-    }
 }
