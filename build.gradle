@@ -14,11 +14,6 @@ checkstyle {
 
 checkstyleMain {
     source ='src/main/java'
-    reports {
-    	html {
-       		destination "build/checkstyle.html"
-     	}
-    }
 }
 
 spotbugs {
@@ -32,6 +27,13 @@ repositories {
 dependencies {
 	// testImplementation('org.junit.jupiter:junit-jupiter:5.6.0')
 	spotbugsPlugins 'com.h3xstream.findsecbugs:findsecbugs-plugin:1.11.0'
+}
+
+tasks.withType(Checkstyle) {
+    reports {
+        xml.required = true
+        html.required = true
+    }
 }
 
 /*
