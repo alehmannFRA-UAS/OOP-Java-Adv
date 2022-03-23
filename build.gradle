@@ -3,5 +3,9 @@ plugins {
 }
 
 checkstyle {
-	toolVersion 0 '8.29'
+	toolVersion '8.36.1'
+}
+
+checkstyleMain {
+    source ='src/java'
 }
