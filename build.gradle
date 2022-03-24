@@ -19,7 +19,8 @@ checkstyle {
 	toolVersion '9.0.1'
 	maxWarnings = 0
     	ignoreFailures false
-	reportsDir = file("$GITHUB_WORKSPACE/reports/checkstyle/")
+	// reportsDir = file("$GITHUB_WORKSPACE/reports/checkstyle/")
+	reportsDir = project.file("build/reports/checkstyle")
 }
 
 checkstyleMain {
