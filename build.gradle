@@ -19,7 +19,7 @@ checkstyle {
 	toolVersion '9.0.1'
 	maxWarnings = 0
     	ignoreFailures false
-	reportsDir = file("$rootDir/reports/checkstyle/")
+	reportsDir = file("$GITHUB_WORKSPACE/reports/checkstyle/")
 }
 
 checkstyleMain {
@@ -41,7 +41,7 @@ pmd {
     consoleOutput = true
     toolVersion = "6.39.0"			// The version of PMD to use
     ignoreFailures = false
-    reportsDir = file("$rootDir/reports/pmd/")
+    reportsDir = file("$GITHUB_WORKSPACE/reports/pmd/")
 }
 
 test {
