@@ -42,7 +42,8 @@ pmd {
     consoleOutput = true
     toolVersion = "6.39.0"			// The version of PMD to use
     ignoreFailures = false
-    reportsDir = file("$GITHUB_WORKSPACE/reports/pmd/")
+    // reportsDir = file("$GITHUB_WORKSPACE/reports/pmd/")
+    reportsDir = project.file("build/reports/pmd")
 }
 
 test {
