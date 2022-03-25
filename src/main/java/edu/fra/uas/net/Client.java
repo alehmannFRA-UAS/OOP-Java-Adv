@@ -31,6 +31,7 @@ public class Client {
     private int serverPort;
     private static final int TIMEOUT = 500;
     private static final int BUFFER_SIZE = 1500;
+    private static final int MAX_PORT_NUM = 0xFFFF;
     
     /**
      * Creates a client.
@@ -44,9 +45,9 @@ public class Client {
      */
     public Client(String serverAddress, int serverPort, String bindAddress, int port) 
     		throws SocketException, UnknownHostException {
-        if (serverPort < 0 || serverPort > 0xFFFF)
+        if (serverPort < 0 || serverPort > MAX_PORT_NUM)
             throw new IllegalArgumentException("Server port value out of range: " + serverPort);
-        if (port < 0 || port > 0xFFFF)
+        if (port < 0 || port > MAX_PORT_NUM)
             throw new IllegalArgumentException("Port value out of range: " + port);
 		InetAddress inetAddress = InetAddress.getByName(bindAddress);
 		SocketAddress socketAddress=new InetSocketAddress(inetAddress, port);  
