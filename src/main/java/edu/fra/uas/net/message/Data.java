@@ -1,4 +1,4 @@
-package edu.fra.uas;
+package edu.fra.uas.net.message;
 
 /**
  * <code>Data</code> is the base class for data.
