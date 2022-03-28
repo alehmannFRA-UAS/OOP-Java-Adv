@@ -26,13 +26,25 @@
               with:
                     name: Checkstyle
                     path: build/reports/checkstyle
-            - uses: actions/upload-artifact@v3
-              if: always()
+            - name: Sonarlint file existence
+              id: checksonarlint_files
+              uses: andstor/file-existence-action@v1
+              with:
+                    files: "build/reports/sonarlint/sonarlintMain/report.html"        
+            - name: Create Artifact for Sonarlint
+              uses: actions/upload-artifact@v3
+              if: steps.checksonarlint_files.outputs.files_exists == 'true'
               with:
                     name: Sonarlint
                     path: build/reports/sonarlint
-            - uses: actions/upload-artifact@v3
-              if: always()
+            - name: Spotbugs file existence
+              id: checkspotbugs_files
+              uses: andstor/file-existence-action@v1
+              with:
+                    files: "build/reports/spotbugs/main.html"  
+            - name: Create Artifact for Spotbugs
+              uses: actions/upload-artifact@v3
+              if: steps.checkspotbugs_files.outputs.files_exists == 'true'
               with:
                     name: Spotbugs
                     path: build/reports/spotbugs
@@ -41,14 +53,20 @@
               uses: andstor/file-existence-action@v1
               with:
                     files: "build/reports/tests/test/index.html"
-            - name: Create Artifact for Checkstyle
+            - name: Create Artifact for JUnit
               uses: actions/upload-artifact@v3
               if: steps.checkjunit_files.outputs.files_exists == 'true'
               with:
                     name: JUnit
                     path: build/reports/tests
-            - uses: actions/upload-artifact@v3
-              if: always()
+            - name: PMD file existence
+              id: checkpmd_files
+              uses: andstor/file-existence-action@v1
+              with:
+                    files: "build/reports/tests/pmd/pmdMain/report.html" 
+            - name: Create Artifact for PMD
+              uses: actions/upload-artifact@v3
+              if: steps.checkpmd_files.outputs.files_exists == 'true'
               with:
                     name: PMD
                     path: build/reports/pmd
