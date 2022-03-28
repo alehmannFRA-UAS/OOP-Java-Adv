@@ -1,0 +1,39 @@
+    name: GitHub Classroom Workflow
+
+    on: [push]
+
+    jobs:
+        build:
+            name: Check Code Quality
+            runs-on: ubuntu-latest
+            steps:
+            - uses: actions/checkout@v2
+            - uses: actions/setup-java@v1
+              with:
+                    java-version: '11'
+            - uses: education/autograding@v1
+            - uses: actions/upload-artifact@v3
+              if: failure()
+              with:
+                    name: Checkstyle
+                    path: build/reports/checkstyle
+            - uses: actions/upload-artifact@v3
+              if: failure()
+              with:
+                    name: Sonarlint
+                    path: build/reports/sonarlint
+            - uses: actions/upload-artifact@v3
+              if: failure()
+              with:
+                    name: Spotbugs
+                    path: build/reports/spotbugs
+            - uses: actions/upload-artifact@v3
+              if: failure()
+              with:
+                    name: JUnit
+                    path: build/reports/tests
+            - uses: actions/upload-artifact@v3
+              if: failure()
+              with:
+                    name: PMD
+                    path: build/reports/pmd
