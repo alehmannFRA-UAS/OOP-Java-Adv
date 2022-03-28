@@ -1,4 +1,4 @@
-package edu.fra.uas.net
+package edu.fra.uas.net;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
