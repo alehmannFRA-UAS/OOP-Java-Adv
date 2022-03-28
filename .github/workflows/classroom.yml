@@ -63,7 +63,7 @@
               id: checkpmd_files
               uses: andstor/file-existence-action@v1
               with:
-                    files: "build/reports/tests/pmd/pmdMain/report.html" 
+                    files: "build/reports/pmd/pmdMain/report.html" 
             - name: Create Artifact for PMD
               uses: actions/upload-artifact@v3
               if: steps.checkpmd_files.outputs.files_exists == 'true'
