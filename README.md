@@ -19,4 +19,4 @@
 
 8. Topic of the project: Creation of an application for the exchange of messages, files and images, similar to WhatsApp, Discord or Slack
 
-9. In the Templates folder you will find Java classes that you need to use in your project for implementation
+9. In the source folder you will find Java classes that you need to use in your project for implementation
