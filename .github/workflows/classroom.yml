@@ -12,8 +12,13 @@
               with:
                     java-version: '11'
             - uses: education/autograding@v1
+            - name: Checkstyle file existence
+              id: checkstyle_files
+              uses: andstor/file-existence-action@v1
+              with:
+                    files: "build/reports/checkstyle/main.html"
             - uses: actions/upload-artifact@v3
-              if: always()
+              if: steps.checkstyle_files.outputs.files_exists == 'true'
               with:
                     name: Checkstyle
                     path: build/reports/checkstyle
