@@ -37,6 +37,13 @@ public abstract class AbstractServer {
         if (port < 0 || port > MAX_PORT_NUM)
             throw new IllegalArgumentException("Server port value out of range: " + port);
 		serverThread = new ServerThread(bindAddress, port);
+		this.startServer();
+	}
+	
+	/**
+	 * Starts the server thread right after constructor.
+	 */
+	private void startServer() {
 		serverThread.start();
 	}
 	
