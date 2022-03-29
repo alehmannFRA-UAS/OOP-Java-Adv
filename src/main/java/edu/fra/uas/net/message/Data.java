@@ -13,7 +13,7 @@ package edu.fra.uas.net.message;
  * <code>Data</code> includes methods to get, but not set, these values.
  * Setting them is a subclass responsibility.
  */
-public class Data implements Cloneable {
+public class Data {
 
     /**
      * The data. The bytes up to the length
