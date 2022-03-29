@@ -109,4 +109,6 @@ pmd {
     rulesMinimumPriority = 5
     ignoreFailures = true
     reportsDir = project.file("build/reports/pmd")
+    ruleSetConfig = resources.text.fromFile(resources.file("config/pmd/ruleset.xml"))
+    ruleSets = []
 }
