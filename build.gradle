@@ -105,10 +105,10 @@ test {
 // PMD configuration
 pmd {
     consoleOutput = true
-    toolVersion = "6.21.0"
+    toolVersion = "6.44.0"
     rulesMinimumPriority = 5
     ignoreFailures = true
-    reportsDir = project.file("build/reports/pmd")
-    ruleSetConfig = resources.text.fromFile(resources.file("config/pmd/ruleset.xml"))
-    ruleSets = []
+    //reportsDir = project.file("build/reports/pmd")
+    //ruleSetFiles = files("config/pmd/ruleset.xml")
+    //ruleSets = []
 }
