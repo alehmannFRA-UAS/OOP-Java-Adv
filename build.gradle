@@ -77,6 +77,8 @@ sonarlintMain {
 allprojects {
     // Makes the "javadoc" action run without a ton of warnings.
     tasks.withType(Javadoc) {
+        options.encoding = 'UTF-8'
+        destinationDir = file("${buildDir}/docs/testjavadoc")
         options.addStringOption('Xdoclint:none', '-quiet')
     }
     
@@ -88,7 +90,6 @@ allprojects {
         options.compilerArgs << "-Xlint:all" << "-Xlint:-serial" << "-Xlint:-processing"
     }
 }
-
 // ##############################################################################
 // JUnit configuration
 test {
@@ -108,7 +109,7 @@ pmd {
     toolVersion = "6.44.0"
     rulesMinimumPriority = 5
     ignoreFailures = true
-    //reportsDir = project.file("build/reports/pmd")
-    //ruleSetFiles = files("config/pmd/ruleset.xml")
-    //ruleSets = []
+    reportsDir = project.file("build/reports/pmd")
+    ruleSetFiles = files("config/pmd/ruleset.xml")
+    ruleSets = []
 }
