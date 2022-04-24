@@ -70,8 +70,11 @@
               with:
                     name: PMD
                     path: build/reports/pmd
-            - name: HTML Preview
-              id: html_preview
-              uses: pavi2410/html-preview-action@v2
+
+            - uses: actions/download-artifact@v3
+              id: download
               with:
-                    html_file: 'build/reports/spotbugs/main.html'
+                    name: 'my-artifact'
+                    path: build/reports
+            - name: 'Echo download path'
+              run: echo ${{steps.download.outputs.download-path}}
