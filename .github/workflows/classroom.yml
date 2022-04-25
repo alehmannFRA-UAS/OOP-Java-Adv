@@ -73,9 +73,6 @@
 
             - run: echo "REPOSITORY_NAME=$(echo '${{ github.repository }}' | awk -F '/' '{print $2}')" >> $GITHUB_ENV
               shell: bash
-              
-            - run: echo '${{ github.repository }}'
-              shell: bash
 
             - name: Pushes test file
               uses: dmnemec/copy_file_to_another_repo_action@main
@@ -83,7 +80,7 @@
                     API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
               with:
                     source_file: 'build/reports/pmd/pmdMain/report.html'
-                    destination_repo: 'alehmannFRA-UAS/OOP-Java-Adv'
-                    user_email: '41898282+github-actions[bot]@users.noreply.github.com'
+                    destination_repo: ${{ env.REPOSITORY_NAME }}
+                    user_email: 'github-actions[bot]@users.noreply.github.com'
                     user_name: 'github-actions[bot]'
                     commit_message: 'A custom message for the commit'
