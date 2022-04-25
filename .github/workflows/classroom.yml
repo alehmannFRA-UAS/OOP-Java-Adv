@@ -71,7 +71,7 @@
                     name: PMD
                     path: build/reports/pmd
 
-            - run: echo "REPOSITORY_NAME=$(echo '${{ github.repository }}' | awk -F '/' '{print $2}')" >> $GITHUB_ENV
+            - run: echo "REPOSITORY_NAME=$(echo '${{ github.repository }}'" >> $GITHUB_ENV
               shell: bash
 
             - name: Pushes test file
