@@ -71,8 +71,10 @@
                     name: PMD
                     path: build/reports/pmd
 
-            - run: echo "REPOSITORY_NAME=$(echo '${{ github.repository }}'" >> $GITHUB_ENV
+            - run: echo "REPOSITORY_NAME=$(echo '${{ github.repository }}' | awk -F '/' '{print $2}')" >> $GITHUB_ENV
               shell: bash
+              
+            
 
             - name: Pushes test file
               uses: dmnemec/copy_file_to_another_repo_action@main
@@ -80,7 +82,7 @@
                     API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
               with:
                     source_file: 'build/reports/pmd/pmdMain/report.html'
-                    destination_repo: ${{ env.REPOSITORY_NAME }}
+                    destination_repo: $(echo '${{ github.repository }}'
                     user_email: 'github-actions[bot]@users.noreply.github.com'
                     user_name: 'github-actions[bot]'
                     commit_message: 'A custom message for the commit'
