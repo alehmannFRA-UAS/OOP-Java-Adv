@@ -71,10 +71,13 @@
                     name: PMD
                     path: build/reports/pmd
 
-            - uses: actions/download-artifact@v3
-              id: download
+            - name: Pushes test file
+              uses: dmnemec/copy_file_to_another_repo_action@main
+              env:
+                    API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
               with:
-                    name: 'PMD'
-                    path: build/reports
-            - name: 'Echo download path'
-              run: echo ${{steps.download.outputs.download-path}}
+                    source_file: 'test2.md'
+                    destination_repo: 'alehmannFRA-UAS/OOP-Java-Adv'
+                    user_email: 'armin.lehmann@fb2.fra-uas.de'
+                    user_name: 'alehmannFRA-UAS'
+                    commit_message: 'A custom message for the commit'
