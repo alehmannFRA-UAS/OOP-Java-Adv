@@ -71,6 +71,12 @@
                     name: PMD
                     path: build/reports/pmd
 
+            - run: echo "REPOSITORY_NAME=$(echo '${{ github.repository }}' | awk -F '/' '{print $2}')" >> $GITHUB_ENV
+              shell: bash
+              
+            - run: echo '${{ github.repository }}'
+              shell: bash
+
             - name: Pushes test file
               uses: dmnemec/copy_file_to_another_repo_action@main
               env:
