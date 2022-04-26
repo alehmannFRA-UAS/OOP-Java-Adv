@@ -73,7 +73,7 @@
 
             - name: Create A Issue
               run: |
-                   export num=$(date +%d-%m-%Y)
+                   export num=$(date +%d-%m-%Y %H:%M:%S)
                    export body=$(cat build/reports/pmd/pmdMain/report.html)
                    jq -nc '{"title":("Issue Test Reports "+env.num),"body": env.body}' | \
                    curl -sL  -X POST -d @- \
