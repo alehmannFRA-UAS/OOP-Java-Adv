@@ -4,6 +4,6 @@ class OTTO {
 
  int ABC = 5;
  
- public OTTO {};
+ public OTTO() {};
 
 }
