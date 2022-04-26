@@ -82,11 +82,11 @@
             #        user_name: 'github-actions[bot]'
             #        commit_message: 'A custom message for the commit'
 
-            - name: Add commit comment
+            - name: Create A Issue
               run: |
-                   export msg="hello world"
-                   jq -nc '{"body":env.msg}' | \
+                   export num=$(( ( RANDOM % 1000 )  + 1 ))
+                   jq -nc '{"title":("Issue No"+env.num),"body": "issue created from bot"}' | \
                    curl -sL  -X POST -d @- \
-                   -H "Content-Type: application/json" \
-                   -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-                   "https://api.github.com/repos/$GITHUB_REPOSITORY/commits/$GITHUB_SHA/comments"
+                    -H "Content-Type: application/json" \
+                    -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+                    "https://api.github.com/repos/$GITHUB_REPOSITORY/issues"
