@@ -71,20 +71,22 @@
                     name: PMD
                     path: build/reports/pmd
 
-            - name: Pushes test file
-              uses: dmnemec/copy_file_to_another_repo_action@main
-              env:
-                    API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
-              with:
-                    source_file: 'build/reports/pmd/pmdMain/report.html'
-                    destination_repo: ${{ github.repository }}
-                    user_email: 'github-actions[bot]@users.noreply.github.com'
-                    user_name: 'github-actions[bot]'
-                    commit_message: 'A custom message for the commit'
+            #- name: Pushes test file
+            #  uses: dmnemec/copy_file_to_another_repo_action@main
+            #  env:
+            #        API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+            #  with:
+            #        source_file: 'build/reports/pmd/pmdMain/report.html'
+            #        destination_repo: ${{ github.repository }}
+            #        user_email: 'github-actions[bot]@users.noreply.github.com'
+            #        user_name: 'github-actions[bot]'
+            #        commit_message: 'A custom message for the commit'
 
-            - name: Assign user
-              env:
-                   PR_NUMBER: ${{ github.event.pull_request.number }}
+            - name: Add commit comment
               run: |
-                   curl -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -X POST -d '{"assignees": ["oldskool"]}' \
-                   https://api.github.com/repos/${GITHUB_REPOSITORY}/issues/${PR_NUMBER}/assignees
+                   export msg="hello world"
+                   jq -nc '{"body":env.msg}' | \
+                   curl -sL  -X POST -d @- \
+                   -H "Content-Type: application/json" \
+                   -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+                   "https://api.github.com/repos/$GITHUB_REPOSITORY/commits/$GITHUB_SHA/comments"
