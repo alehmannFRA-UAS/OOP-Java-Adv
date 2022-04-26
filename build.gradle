@@ -21,7 +21,7 @@ repositories {
 checkstyle {
 	toolVersion '9.0.1'
 	maxWarnings = 0
-	ignoreFailures = true
+	//ignoreFailures = true
 	reportsDir = project.file("build/reports/checkstyle")
 }
 
@@ -42,7 +42,7 @@ tasks.withType(Checkstyle) {
 // ##############################################################################
 // Spotbugs configuration
 spotbugs {
-	ignoreFailures = true
+	//ignoreFailures = true
 	effort = "max"
 	reportLevel = "low"
 	reportsDir = project.file("build/reports/spotbugs")
@@ -57,7 +57,7 @@ tasks.matching {task -> task.name.startsWith('spotbugs')}.forEach {
 // ##############################################################################
 // Sonarlint configuration
 sonarlint {
-	ignoreFailures = true
+	//ignoreFailures = true
 	reportsDir = project.file("build/reports/sonarlint")
 	// workingDir 'src/main/java'
 }
