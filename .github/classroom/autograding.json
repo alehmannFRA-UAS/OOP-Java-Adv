@@ -1,6 +1,6 @@
 {
   "tests": [
-    {
+    /*{
       "name": "JUnit",
       "setup": "",
       "run": "gradle test --warning-mode none",
@@ -9,7 +9,7 @@
       "comparison": "included",
       "timeout": 10,
       "points": 0
-    },
+    },*/
     {
       "name": "Checkstyle",
       "setup": "",
@@ -39,7 +39,7 @@
       "comparison": "included",
       "timeout": 10,
       "points": 0
-    },
+    }/*,
     {
       "name": "PMD",
       "setup": "",
@@ -49,6 +49,6 @@
       "comparison": "included",
       "timeout": 10,
       "points": 0
-    }
+    }*/
   ]
 }
