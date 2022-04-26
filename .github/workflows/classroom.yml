@@ -59,23 +59,24 @@
             #  with:
             #        name: JUnit
             #        path: build/reports/tests
-            - name: PMD file existence
-              id: checkpmd_files
-              uses: andstor/file-existence-action@v1
-              with:
-                    files: "build/reports/pmd/pmdMain/report.html" 
-            - name: Create Artifact for PMD
-              uses: actions/upload-artifact@v3
-              if: steps.checkpmd_files.outputs.files_exists == 'true'
-              with:
-                    name: PMD
-                    path: build/reports/pmd
+            #- name: PMD file existence
+            #  id: checkpmd_files
+            #  uses: andstor/file-existence-action@v1
+            #  with:
+            #        files: "build/reports/pmd/pmdMain/report.html" 
+            #- name: Create Artifact for PMD
+            #  uses: actions/upload-artifact@v3
+            #  if: steps.checkpmd_files.outputs.files_exists == 'true'
+            #  with:
+            #        name: PMD
+            #        path: build/reports/pmd
 
-            - name: Create A Issue
+            - name: Create an Issue
               run: |
-                   export num=$(date +%d-%m-%Y %H:%M:%S)
-                   export body=$(cat build/reports/pmd/pmdMain/report.html)
-                   jq -nc '{"title":("Issue Test Reports "+env.num),"body": env.body}' | \
+                   export day=$(date +%d-%m-%Y)
+                   export time=$(date +%T)
+                   export body=$(cat build/reports/spotbugs/main.html)
+                   jq -nc '{"title":("Issue Test Reports "+env.day+" Time:"+env.time),"body": env.body}' | \
                    curl -sL  -X POST -d @- \
                     -H "Content-Type: application/json" \
                     -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
