@@ -3,7 +3,7 @@ plugins {
 	id 'checkstyle'
 	id 'com.github.spotbugs' version '4.5.0'
 	id 'name.remal.sonarlint' version '1.5.0'
-	id 'pmd'
+	//id 'pmd'
 }
 
 sourceCompatibility = '11'
@@ -13,9 +13,9 @@ repositories {
 	mavenCentral()
 }
 
-dependencies {
-	testImplementation('org.junit.jupiter:junit-jupiter:5.6.0') // JUnit
-}
+//dependencies {
+//	testImplementation('org.junit.jupiter:junit-jupiter:5.6.0') // JUnit
+//}
 // ##############################################################################
 // Checkstyle configuration
 checkstyle {
@@ -92,24 +92,24 @@ allprojects {
 }
 // ##############################################################################
 // JUnit configuration
-test {
-	useJUnitPlatform()
-	testLogging {
-		events "passed", "skipped", "failed"
-	}
-	reports {
-		junitXml.required  = true
-		html.required  = true
-	}
-}
+//test {
+//	useJUnitPlatform()
+//	testLogging {
+//		events "passed", "skipped", "failed"
+//	}
+//	reports {
+//		junitXml.required  = true
+//		html.required  = true
+//	}
+//}
 // ##############################################################################
 // PMD configuration
-pmd {
-    consoleOutput = true
-    toolVersion = "6.44.0"
-    rulesMinimumPriority = 5
-    ignoreFailures = true
-    reportsDir = project.file("build/reports/pmd")
-    ruleSetFiles = files("config/pmd/ruleset.xml")
-    ruleSets = []
-}
+//pmd {
+//    consoleOutput = true
+//    toolVersion = "6.44.0"
+//    rulesMinimumPriority = 5
+//    ignoreFailures = true
+//    reportsDir = project.file("build/reports/pmd")
+//    ruleSetFiles = files("config/pmd/ruleset.xml")
+//    ruleSets = []
+//}
