@@ -78,6 +78,6 @@
                    export body=$(cat build/reports/spotbugs/main.html)
                    jq -nc '{"title":("Issue Test Reports "+env.day+" Time "+env.time),"body": env.body}' | \
                    curl -sL  -X POST -d @- \
-                    -H "Content-Type: application/json" \
+                    -H "Content-Type: text/html" \
                     -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
                     "https://api.github.com/repos/$GITHUB_REPOSITORY/issues"
