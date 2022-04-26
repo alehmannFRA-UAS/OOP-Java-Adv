@@ -73,6 +73,7 @@
 
             - name: Create an Issue
               run: |
+                   timedatectl set-timezone 'Europe/Berlin'
                    export day=$(date +%d-%m-%Y)
                    export time=$(date +%T -d +2 hours)
                    export body=$(cat build/reports/spotbugs/main.html)
