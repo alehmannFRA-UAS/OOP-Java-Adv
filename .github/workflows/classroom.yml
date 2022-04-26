@@ -71,22 +71,13 @@
                     name: PMD
                     path: build/reports/pmd
 
-            #- name: Pushes test file
-            #  uses: dmnemec/copy_file_to_another_repo_action@main
-            #  env:
-            #        API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
-            #  with:
-            #        source_file: 'build/reports/pmd/pmdMain/report.html'
-            #        destination_repo: ${{ github.repository }}
-            #        user_email: 'github-actions[bot]@users.noreply.github.com'
-            #        user_name: 'github-actions[bot]'
-            #        commit_message: 'A custom message for the commit'
-
-            - name: Create A Issue
-              run: |
-                   export num=$(( ( RANDOM % 1000 )  + 1 ))
-                   jq -nc '{"title":("Issue No"+env.num),"body": "issue created from bot"}' | \
-                   curl -sL  -X POST -d @- \
-                    -H "Content-Type: application/json" \
-                    -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-                    "https://api.github.com/repos/$GITHUB_REPOSITORY/issues"
+            - name: Pushes test file
+              uses: dmnemec/copy_file_to_another_repo_action@main
+              env:
+                    API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+              with:
+                    source_file: 'build/reports/pmd/pmdMain/report.html'
+                    destination_repo: ${{ github.repository }}
+                    user_email: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
+                    user_name: GitHub <noreply@github.com>
+                    commit_message: 'A custom message for the commit'
