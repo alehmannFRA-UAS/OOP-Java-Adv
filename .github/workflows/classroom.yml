@@ -73,9 +73,8 @@
 
             - name: Create an Issue
               run: |
-                   timedatectl set-timezone 'Europe/Berlin'
                    export day=$(date +%d-%m-%Y)
-                   export time=$(date +%T -d +2 hours)
+                   export time=$(date -d '+2 hours' '+%T')
                    export body=$(cat build/reports/spotbugs/main.html)
                    jq -nc '{"title":("Issue Test Reports "+env.day+" Time "+env.time),"body": env.body}' | \
                    curl -sL  -X POST -d @- \
