@@ -87,7 +87,7 @@
                    export day=$(date +%d-%m-%Y)
                    export time=$(date -d '+2 hours' '+%T')
                    export body=${{ steps.autograder.outputs.points }}
-                   jq -nc '{"title":("Issue Test Reports "+env.day+" Time "+env.time), "body":("The tests revealed possible improvements in terms of the quality of the code. Please check the artifacts that can be found in the actions! "+env.body+" of tests failed.")}' | \
+                   jq -nc '{"title":("Issue Test Reports "+env.day+" Time "+env.time), "body":("The tests revealed possible improvements in terms of the quality of the code. Please check the artifacts that can be found in the actions! "+env.body+" tests passed.")}' | \
                    curl -sL  -X POST -d @- \
                     -H "Content-Type: text/html" \
                     -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
