@@ -22,39 +22,42 @@
             # checks if files from checkstyle are created
             - name: Checkstyle file existence
               id: checkstyle_files
+              if: ${{ steps.autograder.outcome != 'success' }}
               uses: andstor/file-existence-action@v1
               with:
                     files: "build/reports/checkstyle/main.html"
             # creates the artifact file for checkstyle reports to download        
             - name: Create Artifact for Checkstyle
               uses: actions/upload-artifact@v3
-              if: steps.checkstyle_files.outputs.files_exists == 'true' && ${{ steps.autograder.outcome != 'success' }}
+              if: steps.checkstyle_files.outputs.files_exists == 'true'
               with:
                     name: Checkstyle
                     path: build/reports/checkstyle
             # checks if files from sonarlint are created
             - name: Sonarlint file existence
               id: checksonarlint_files
+              if: ${{ steps.autograder.outcome != 'success' }}
               uses: andstor/file-existence-action@v1
               with:
                     files: "build/reports/sonarlint/sonarlintMain/report.html"
             # creates the artifact file for sonarlint reports to download  
             - name: Create Artifact for Sonarlint
               uses: actions/upload-artifact@v3
-              if: steps.checksonarlint_files.outputs.files_exists == 'true' && ${{ steps.autograder.outcome != 'success' }}
+              if: steps.checksonarlint_files.outputs.files_exists == 'true'
               with:
                     name: Sonarlint
                     path: build/reports/sonarlint
             # checks if files from spotbugs are created
             - name: Spotbugs file existence
               id: checkspotbugs_files
+              if: ${{ steps.autograder.outcome != 'success' }}
               uses: andstor/file-existence-action@v1
               with:
                     files: "build/reports/spotbugs/main.html"
             # creates the artifact file for sonarlint reports to download
             - name: Create Artifact for Spotbugs
               uses: actions/upload-artifact@v3
-              if: steps.checkspotbugs_files.outputs.files_exists == 'true' && ${{ steps.autograder.outcome != 'success' }}
+              if: steps.checkspotbugs_files.outputs.files_exists == 'true'
               with:
                     name: Spotbugs
                     path: build/reports/spotbugs
@@ -65,18 +68,19 @@
             #        files: "build/reports/tests/test/index.html"
             #- name: Create Artifact for JUnit
             #  uses: actions/upload-artifact@v3
-            #  if: steps.checkjunit_files.outputs.files_exists == 'true' && ${{ steps.autograder.outcome != 'success' }}
+            #  if: steps.checkjunit_files.outputs.files_exists == 'true'
             #  with:
             #        name: JUnit
             #        path: build/reports/tests
             #- name: PMD file existence
             #  id: checkpmd_files
+            #  if: ${{ steps.autograder.outcome != 'success' }}
             #  uses: andstor/file-existence-action@v1
             #  with:
             #        files: "build/reports/pmd/pmdMain/report.html" 
             #- name: Create Artifact for PMD
             #  uses: actions/upload-artifact@v3
-            #  if: steps.checkpmd_files.outputs.files_exists == 'true' && ${{ steps.autograder.outcome != 'success' }}
+            #  if: steps.checkpmd_files.outputs.files_exists == 'true'
             #  with:
             #        name: PMD
             #        path: build/reports/pmd
