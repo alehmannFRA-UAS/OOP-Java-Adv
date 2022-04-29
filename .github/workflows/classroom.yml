@@ -28,7 +28,7 @@
             # creates the artifact file for checkstyle reports to download        
             - name: Create Artifact for Checkstyle
               uses: actions/upload-artifact@v3
-              if: steps.checkstyle_files.outputs.files_exists == 'true'
+              if: steps.checkstyle_files.outputs.files_exists == 'true' && ${{ steps.autograder.outcome != 'success' }}
               with:
                     name: Checkstyle
                     path: build/reports/checkstyle
@@ -41,7 +41,7 @@
             # creates the artifact file for sonarlint reports to download  
             - name: Create Artifact for Sonarlint
               uses: actions/upload-artifact@v3
-              if: steps.checksonarlint_files.outputs.files_exists == 'true'
+              if: steps.checksonarlint_files.outputs.files_exists == 'true' && ${{ steps.autograder.outcome != 'success' }}
               with:
                     name: Sonarlint
                     path: build/reports/sonarlint
@@ -54,7 +54,7 @@
             # creates the artifact file for sonarlint reports to download
             - name: Create Artifact for Spotbugs
               uses: actions/upload-artifact@v3
-              if: steps.checkspotbugs_files.outputs.files_exists == 'true'
+              if: steps.checkspotbugs_files.outputs.files_exists == 'true' && ${{ steps.autograder.outcome != 'success' }}
               with:
                     name: Spotbugs
                     path: build/reports/spotbugs
@@ -65,7 +65,7 @@
             #        files: "build/reports/tests/test/index.html"
             #- name: Create Artifact for JUnit
             #  uses: actions/upload-artifact@v3
-            #  if: steps.checkjunit_files.outputs.files_exists == 'true'
+            #  if: steps.checkjunit_files.outputs.files_exists == 'true' && ${{ steps.autograder.outcome != 'success' }}
             #  with:
             #        name: JUnit
             #        path: build/reports/tests
@@ -76,7 +76,7 @@
             #        files: "build/reports/pmd/pmdMain/report.html" 
             #- name: Create Artifact for PMD
             #  uses: actions/upload-artifact@v3
-            #  if: steps.checkpmd_files.outputs.files_exists == 'true'
+            #  if: steps.checkpmd_files.outputs.files_exists == 'true' && ${{ steps.autograder.outcome != 'success' }}
             #  with:
             #        name: PMD
             #        path: build/reports/pmd
